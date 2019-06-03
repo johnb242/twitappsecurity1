@@ -10,7 +10,7 @@ import java.util.Arrays;
 @Component
 public class Dataloader implements CommandLineRunner {
     @Autowired
-    UserRepository userRepository;
+    User1Repository userRepository;
     @Autowired
     RoleRepository roleRepository;
     @Autowired
@@ -24,11 +24,11 @@ public class Dataloader implements CommandLineRunner {
         Role adminRole = roleRepository.findByRole("ADMIN");
         Role userRole = roleRepository.findByRole("USER");
 
-        User user = new User("jim@jim.com", "password", "Jim", "Jimmerson", true, "jim");
+        User1 user = new User1("jim@jim.com", "password", "Jim", "Jimmerson", true, "jim");
         user.setRoles(Arrays.asList(userRole));
         userRepository.save(user);
 
-        user = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
+        user = new User1("admin@admin.com", "password", "Admin", "User1", true, "admin");
         user.setRoles(Arrays.asList(adminRole));
         userRepository.save(user);
     }

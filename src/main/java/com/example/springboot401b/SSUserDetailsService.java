@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,9 +17,9 @@ import java.util.Set;
     @Service
     public class SSUserDetailsService implements UserDetailsService {
 
-        private UserRepository userRepository;
+        private User1Repository userRepository;
 
-        public SSUserDetailsService(UserRepository userRepository) {
+        public SSUserDetailsService(User1Repository userRepository) {
             this.userRepository = userRepository;
         }
 
@@ -28,14 +27,14 @@ import java.util.Set;
         public UserDetails loadUserByUsername(String username) throws
                 UsernameNotFoundException {
             try {
-                User appUser = userRepository.findByUsername(username);
+                User1 appUser = userRepository.findByUsername(username);
 
                 if (appUser == null) {
                     System.out.println("user not found with the provided surname" + appUser.toString());
                     return null;
                 }
                 System.out.println("user from username " + appUser.toString());
-//                return new org.springframework.security.core.userdetails.User(
+//                return new org.springframework.security.core.userdetails.User1(
 //                        appUser.getUsername(),
 //                        appUser.getPassword(),
 //                        getAuthorities(appUser));
@@ -45,7 +44,7 @@ import java.util.Set;
             }
         }
 
-        private Set<GrantedAuthority> getAuthorities(User appUser) {
+        private Set<GrantedAuthority> getAuthorities(User1 appUser) {
             Set<GrantedAuthority> authorities = new HashSet<>();
 
             for (Role role : appUser.getRoles()) {

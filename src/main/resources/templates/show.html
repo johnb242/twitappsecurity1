@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/"> message detail</a><br />
+Title :<span th:text="${posting.title}" ></span><br />
+Content :<span th:text="${posting.content}" ></span><br />
+Posteddate :<p th:text="${posting.postedDate}" ></p>
+Postedby :<span th:text="${posting.postedBy}" ></span><br />
+<a th:href="@{/delete/{id}(id=${posting.id})}">Delete this course</a>
+<a href="/logout">logout</a>
+<a href="/add">add a message</a><br />
+</body>
+</html>

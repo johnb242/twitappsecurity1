@@ -7,20 +7,20 @@ import java.util.Collection;
 public class CustomUserDetails extends org.springframework.security.core.userdetails.User {
 
 
-    private User user;
-    public CustomUserDetails(User user, Collection<? extends
+    private User1 user;
+    public CustomUserDetails(User1 user, Collection<? extends
             GrantedAuthority> authorities){
         super(user.getUsername(), user.getPassword(), authorities);
         this.user = user;
     }
-    public CustomUserDetails(User user, String password, Collection<?
+    public CustomUserDetails(User1 user, String password, Collection<?
             extends GrantedAuthority> authorities){
     super(user.getUsername(), password, authorities);
     this.user = user;
     }
 
 
-    public CustomUserDetails(User user, boolean enabled,
+    public CustomUserDetails(User1 user, boolean enabled,
                              boolean accountNonExpired,
                              boolean credentialsNonExpired,
                              boolean accountNonLocked,
@@ -31,7 +31,7 @@ public class CustomUserDetails extends org.springframework.security.core.userdet
                 accountNonLocked, authorities);
         this.user = user;
     }
-    public User getUser() {
+    public User1 getUser() {
         return user;
     }
 }

@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     private SSUserDetailsService userDetailsService;
 
     @Autowired
-    private UserRepository userRepository;
+    private User1Repository userRepository;
 
     @Override
     public UserDetailsService userDetailsServiceBean() throws
