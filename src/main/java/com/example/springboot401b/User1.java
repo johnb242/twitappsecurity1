@@ -34,10 +34,16 @@ public class User1 {
     @Column(name="username")
     private String username;
 
+    @Column(name="photo")
+    private String photo;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    public Set<Posting> posting;
 
     public User1() {
     }
@@ -118,9 +124,6 @@ public class User1 {
 
 
     private String name;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Posting> posting;
 
 
 

@@ -14,7 +14,7 @@ import java.security.Principal;
 public class HomeController1 {
 
     @Autowired
-     UserService userService;
+    UserService userService;
 
     @Autowired
     Postingrepository postingrepository;
@@ -22,27 +22,25 @@ public class HomeController1 {
     User1Repository user1Repository;
 
     @GetMapping("/register")
-    public String showRegistrationPage(Model model){
+    public String showRegistrationPage(Model model) {
         model.addAttribute("user", new User1());
         return "registration";
     }
+
     @PostMapping("/register")
     public String processRegistrationPage(@Valid
-                                          @ModelAttribute("user")User1 user, BindingResult result, Model model){
+                                          @ModelAttribute("user") User1 user, BindingResult result, Model model) {
         model.addAttribute("user", user);
-        if (result.hasErrors())
-        {
+        if (result.hasErrors()) {
             return "registration";
-        }
-        else
-        {
+        } else {
             userService.saveUser(user);
             model.addAttribute("message", "user account created");
         }
         return "index";
     }
 
-//    @RequestMapping("/")
+    //    @RequestMapping("/")
 //    public String index(){
 //        return "index";
 //    }
@@ -50,13 +48,14 @@ public class HomeController1 {
     public String login() {
         return "login";
     }
-//    @RequestMapping("/admin")
+
+    //    @RequestMapping("/admin")
 //    public String admin(){
 //        return "admin";
 //    }
     @RequestMapping("/secure")
-    public String secure(Principal principal, Model model){
-        User1 myuser = ((CustomUserDetails)((UsernamePasswordAuthenticationToken)principal).getPrincipal()).getUser();
+    public String secure(Principal principal, Model model) {
+        User1 myuser = ((CustomUserDetails) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("myuser", myuser);
         return "secure";
     }
@@ -65,7 +64,7 @@ public class HomeController1 {
     @RequestMapping("/")
     public String listPostings(Model model) {
         model.addAttribute("postings", postingrepository.findAll());
-        if(userService.getUser() !=null){
+        if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
         return "list";
@@ -103,12 +102,13 @@ public class HomeController1 {
     }
 
     @RequestMapping("/delete/{id}")
-    public String delPosting(@PathVariable("id") long id) {
+    public String deletePosting(@PathVariable("id") long id) {
         postingrepository.deleteById(id);
         return "redirect:/";
     }
+
     @RequestMapping("/logout")
-    public String logout(){
+    public String logout() {
         return "login";
     }
 }
