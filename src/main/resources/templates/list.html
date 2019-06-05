@@ -43,6 +43,17 @@
 
                 <span class="nav-link" th:inline="text">You are logged in as: [[${user_username}]].</span>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/profile">Profile</a>
+            <img src="[[${user_gravatarurl}]]" alt="my avatar"></img>
+            <span class="nav-link" th:inline="text">First Name: [[${user_firstname}]].</span>
+            <span class="nav-link" th:inline="text">Last Name: [[${user_lastname}]].</span>
+            <span class="nav-link" th:inline="text">You are logged in as: [[${user_username}]].</span>
+            <span class="nav-link" th:inline="text">email: [[${user_email}]].</span>
+            <span class="nav-link" th:inline="text">hobby: [[${user_hobby}]].</span>
+            <span></span>
+            </li>
+
             </li>
             </ul>
     </div>

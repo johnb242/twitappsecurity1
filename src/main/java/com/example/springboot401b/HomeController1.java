@@ -21,6 +21,14 @@ public class HomeController1 {
     @Autowired
     User1Repository user1Repository;
 
+
+    @RequestMapping("/profile")
+    public String profile() {
+        return "profile";
+    }
+
+
+
     @GetMapping("/register")
     public String showRegistrationPage(Model model) {
         model.addAttribute("user", new User1());
@@ -76,6 +84,12 @@ public class HomeController1 {
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
             model.addAttribute("user_username", userService.getUser().getUsername());
+            model.addAttribute("user_firstname", userService.getUser().getFirstName());
+            model.addAttribute("user_lastname", userService.getUser().getLastName());
+            model.addAttribute("user_email", userService.getUser().getEmail());
+            model.addAttribute("user_hobby", userService.getUser().getHobby());
+            model.addAttribute("user_gravatarurl", userService.getUser().getGravatarurl());
+
         }
         return "list";
     }

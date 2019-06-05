@@ -49,4 +49,5 @@ public class UserService {
         User1 user = userRepository.findByUsername(currentusername);
         return user;
     }
+
 }

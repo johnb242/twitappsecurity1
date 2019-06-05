@@ -3,6 +3,7 @@ package com.example.springboot401b;
 
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 
 import javax.persistence.*;
@@ -34,8 +35,27 @@ public class User1 {
     @Column(name="username")
     private String username;
 
-    @Column(name="photo")
-    private String photo;
+
+    public String getGravatarurl() {
+        return gravatarurl;
+    }
+
+    public void setGravatarurl(String gravatarurl) {
+        this.gravatarurl = gravatarurl;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
+    @Column(name="gravatarurl")
+    private String gravatarurl;
+    @Column(name="hobby")
+    private String hobby;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
@@ -121,6 +141,7 @@ public class User1 {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
 
 
     private String name;

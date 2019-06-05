@@ -64,6 +64,16 @@
           th:errors="*{password}">Password error</span></strong></mark>
     <input type="text" id="password" placeholder="Password"
            th:field="*{password}" /><br />
+    gravatarurl<mark><strong>
+    <span th:if="${#fields.hasErrors('gravatarurl')}"
+          th:errors="*{gravatarurl}">gravatar error</span></strong></mark>
+    <input type="text" id="gravatarurl" placeholder="gravatarurl"
+           th:field="*{gravatarurl}" /><br />
+    hobby<mark><strong>
+    <span th:if="${#fields.hasErrors('hobby')}"
+          th:errors="*{hobby}">hobby error</span></strong></mark>
+    <input type="text" id="hobby" placeholder="hobby"
+           th:field="*{hobby}" /><br />
 <button type="submit" class="btn btn-default">Submit</button>
 
 </form>
