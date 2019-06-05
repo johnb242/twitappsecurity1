@@ -61,11 +61,21 @@ public class HomeController1 {
     }
 
 
+//    @RequestMapping("/")
+//    public String listPostings(Model model) {
+//        model.addAttribute("postings", postingrepository.findAll());
+//        if (userService.getUser() != null) {
+//            model.addAttribute("user_id", userService.getUser().getId());
+//        }
+//        return "list";
+//    }
     @RequestMapping("/")
-    public String listPostings(Model model) {
+    public String listPostings(Principal principal,Model model) {
         model.addAttribute("postings", postingrepository.findAll());
+
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
+            model.addAttribute("user_username", userService.getUser().getUsername());
         }
         return "list";
     }

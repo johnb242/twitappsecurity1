@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -9,7 +10,8 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">twitter</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -25,15 +27,24 @@
             <li class="nav-item">
                 <a class="nav-link" href="/register">Register</a>
             </li>
-            <li class="nav-item">
+            <li sec:authorize="isAnonymous()" class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
             </li>
-            <li class="nav-item">
+            <li sec:authorize="isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="/add">Add a message</a>
             </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <!--<span>you are logged in as: </span>-->
+                <!--<span class="nav-link" th:text="${user_username}"> </span>-->
+
+                <span class="nav-link" th:inline="text">You are logged in as: [[${user_username}]].</span>
+
+            </li>
+            </ul>
     </div>
 </nav>
 
@@ -55,7 +66,7 @@
         <td th:text="${posting.postedBy}"></td>
         <td>
             <!--<div sec:authorize="isAuthenticated()">-->
-                <span th:if="${user_id == posting.user.id}">
+            <span th:if="${user_id == posting.user.id}">
 
                 <a th:href="@{/update/{id}(id=${posting.id})}">update</a> -
                 <a th:href="@{/delete/{id}(id=${posting.id})}">Delete</a>
