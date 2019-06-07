@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDateTime;
 
 @Controller
 public class HomeController1 {
@@ -97,17 +98,23 @@ public class HomeController1 {
     @GetMapping("/add")
     public String postingform(Model model) {
         model.addAttribute("posting", new Posting());
+
         return "postingform";
     }
 
     @PostMapping("/process")
     public String postingform(@Valid Posting posting,
-                              BindingResult result) {
+                              BindingResult result)
+
+    {
+//        posting.setPostedDateTime(LocalDateTime.now());
+        String username = userService.getUser().getUsername();
         if (result.hasErrors()) {
             return "postingform";
         }
-        String username = userService.getUser().getUsername();
+
         posting.setUser(user1Repository.findByUsername(username));
+
         postingrepository.save(posting);
         return "redirect:/";
     }
@@ -135,4 +142,6 @@ public class HomeController1 {
     public String logout() {
         return "login";
     }
+
+
 }

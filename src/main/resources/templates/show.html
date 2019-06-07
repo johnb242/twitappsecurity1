@@ -41,7 +41,7 @@
 Title :<span th:text="${posting.title}" ></span><br />
 Content :<span th:text="${posting.content}" ></span><br />
 Posteddate :<p th:text="${posting.postedDate}" ></p>
-Postedby :<span th:text="${posting.postedBy}" ></span><br />
+Postedby :<span th:text="${posting.getUser().getUsername()}" ></span><br />
 <!--<a th:href="@{/delete/{id}(id=${posting.id})}">Delete</a>-->
 <!--<a href="/logout">logout</a>-->
 <!--<a href="/add">add a message</a><br />-->

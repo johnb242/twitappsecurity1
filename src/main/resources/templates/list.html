@@ -38,31 +38,30 @@
                 <a class="nav-link" href="/add">Add a message</a>
             </li>
             <li class="nav-item" sec:authorize="isAuthenticated()">
-                <!--<span>you are logged in as: </span>-->
-                <!--<span class="nav-link" th:text="${user_username}"> </span>-->
 
                 <span class="nav-link" th:inline="text">You are logged in as: [[${user_username}]].</span>
 
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Profile</a>
-            <img src="[[${user_gravatarurl}]]" alt="my avatar"></img>
-            <span class="nav-link" th:inline="text">First Name: [[${user_firstname}]].</span>
-            <span class="nav-link" th:inline="text">Last Name: [[${user_lastname}]].</span>
-            <span class="nav-link" th:inline="text">You are logged in as: [[${user_username}]].</span>
-            <span class="nav-link" th:inline="text">email: [[${user_email}]].</span>
-            <span class="nav-link" th:inline="text">hobby: [[${user_hobby}]].</span>
-            <span></span>
-            </li>
 
-            </li>
-            </ul>
+
+
+                <!--<img id="gravatar" src="https://en.gravatar.com/avatar/4e04c7f358c1b3dc5bb6d96d27661182?s=20" alt="profilefoto">-->
+
+
+                <span class="nav-link" th:inline="text">First Name: [[${user_firstname}]].</span>
+                <span class="nav-link" th:inline="text">Last Name: [[${user_lastname}]].</span>
+                <span class="nav-link" th:inline="text">You are logged in as: [[${user_username}]].</span>
+                <span class="nav-link" th:inline="text">email: [[${user_email}]].</span>
+                <span class="nav-link" th:inline="text">hobby: [[${user_hobby}]].</span>
+                <!--<span class="nav-link"> <img id="gravatar" th:src="${user_gravatarurl}" alt="profilefoto">  </span>-->
+            <a class="nav-link" href="/profile">Profile foto</a>
+
+        </ul>
     </div>
 </nav>
 
 <h2>messages</h2>
-<!--<a href="/add">add a message</a><br />-->
-<!--<a class="btn btn-primary" href="/add" role="button">Add a message</a>-->
-<!--<a class="btn btn-primary" href="/register" role="button">Register</a>-->
+
 <table>
     <tr>
         <th> title</th>
@@ -74,17 +73,16 @@
         <td th:text="${posting.title}"></td>
         <td th:text="${posting.content}"></td>
         <td th:text="${posting.postedDate}"></td>
-        <td th:text="${posting.postedBy}"></td>
+        <td th:text="${posting.getUser().getUsername()}"></td>
         <td>
-            <!--<div sec:authorize="isAuthenticated()">-->
+            <div sec:authorize="isAuthenticated()">
             <span th:if="${user_id == posting.user.id}">
-
                 <a th:href="@{/update/{id}(id=${posting.id})}">update</a> -
-                <a th:href="@{/delete/{id}(id=${posting.id})}">Delete</a>
+                <a th:href="@{/delete/{id}(id=${posting.id})}">Delete</a> -
+                 <a th:href="@{/detail/{id}(id=${posting.id})}">message details</a>
+            </span>
+            </div>
 
-                    </span>
-            <!--</div>-->
-            <a th:href="@{/detail/{id}(id=${posting.id})}">message details</a>
             <!--<a class="btn btn-primary" href="/logout" role="button">Log out</a>-->
         </td>
     </tr>
