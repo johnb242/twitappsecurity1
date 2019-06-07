@@ -21,7 +21,8 @@ public class HomeController1 {
     Postingrepository postingrepository;
     @Autowired
     User1Repository user1Repository;
-
+    @Autowired
+    CloudinaryConfig cloudinaryConfig;
 
     @RequestMapping("/profile")
     public String profile() {
