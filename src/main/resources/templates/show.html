@@ -35,10 +35,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="/add">Add a message</a>
             </li>
+            </ul>
     </div>
 </nav>
 <!--<a href="/"> message detail</a><br />-->
 Title :<span th:text="${posting.title}" ></span><br />
+
+<div th:if="${posting.photo} != null">
+    <img class="detail-img" th:src="${posting.photo}" alt="post image"/>
+
+</div>
+
+
+
+
+
 Content :<span th:text="${posting.content}" ></span><br />
 Posteddate :<p th:text="${posting.postedDate}" ></p>
 Postedby :<span th:text="${posting.getUser().getUsername()}" ></span><br />

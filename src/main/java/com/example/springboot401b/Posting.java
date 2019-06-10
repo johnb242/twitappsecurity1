@@ -23,6 +23,18 @@ public class Posting {
     @Size(min=3)
     private String  postedDate;
 
+    private String photo;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+
+
 
 //@Temporal()
 //    private LocalDateTime postedDateTime;
